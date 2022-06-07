@@ -25,6 +25,7 @@ class HomeActivity : AppCompatActivity() {
 
         binding.idtvLogout.setOnClickListener {
             Firebase.auth.signOut()
+
             Intent(this, LogInActivity::class.java).also {
                 it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(it)
@@ -35,7 +36,6 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, TambahBukuActivity::class.java))
         }
 
-
         binding.idrvDatabuku.layoutManager = LinearLayoutManager(this)
         binding.idrvDatabuku.setHasFixedSize(true)
         data = arrayListOf<DataBukuModel>()
@@ -44,6 +44,7 @@ class HomeActivity : AppCompatActivity() {
 
     fun getDataBuku() {
         dbRealtime = FirebaseDatabase.getInstance().getReference("buku")
+
         dbRealtime.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){

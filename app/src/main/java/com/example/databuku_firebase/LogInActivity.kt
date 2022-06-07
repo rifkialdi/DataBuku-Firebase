@@ -45,8 +45,6 @@ class LogInActivity : AppCompatActivity() {
                 loginUser(email, password)
             }
         }
-
-
     }
 
     private fun loginUser(email: String, password: String) {

@@ -56,8 +56,6 @@ class SignUpActivity : AppCompatActivity() {
                 newAuth(email, name, password)
             }
         }
-
-
     }
 
     fun newAcc(name: String, email: String, password: String) {
@@ -70,7 +68,6 @@ class SignUpActivity : AppCompatActivity() {
     fun newAuth(email: String, name: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
-
                 newAcc(name, email, password)
                 Toast.makeText(this, "successfully registered", Toast.LENGTH_SHORT).show()
 

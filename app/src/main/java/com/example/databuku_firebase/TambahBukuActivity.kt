@@ -47,7 +47,6 @@ class TambahBukuActivity : AppCompatActivity() {
 
         dbRealtime = Firebase.database.reference
 
-
         binding.idbtnTambah.setOnClickListener {
             checkField()
         }
