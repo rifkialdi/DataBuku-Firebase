@@ -157,6 +157,7 @@ class TambahBukuActivity : AppCompatActivity() {
         }
 
         if (!checkField) {
+            Log.e("url", binding.idivImage.toString())
             uploadImage(judulBuku, penerbit, tahunTerbit, penulis, imageUri)
         }
     }
