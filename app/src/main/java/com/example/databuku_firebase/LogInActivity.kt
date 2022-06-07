@@ -44,7 +44,6 @@ class LogInActivity : AppCompatActivity() {
             if (!check) {
                 loginUser(email, password)
             }
-
         }
 
 

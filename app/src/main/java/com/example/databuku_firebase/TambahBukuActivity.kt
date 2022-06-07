@@ -47,19 +47,18 @@ class TambahBukuActivity : AppCompatActivity() {
 
         dbRealtime = Firebase.database.reference
 
-        binding.idivImage.visibility = View.INVISIBLE
+
         binding.idbtnTambah.setOnClickListener {
             checkField()
         }
 
+        binding.idivImage.visibility = View.INVISIBLE
         binding.idbtnUpload.setOnClickListener {
-            binding.idivImage.visibility = View.VISIBLE
             selectImage()
         }
 
         fStorage = FirebaseStorage.getInstance("gs://databuku-49a78.appspot.com")
         sRef = fStorage.reference
-
     }
 
     private fun selectImage() {
@@ -73,6 +72,8 @@ class TambahBukuActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.data != null) {
+            binding.idivImage.visibility = View.VISIBLE
+
             imageUri = data.data!!
             binding.idivImage.setImageURI(imageUri)
             binding.idbtnUpload.visibility = View.INVISIBLE
