@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DataBuku-Firebase</string>
+    <string name="welcome">Welcome</string>
+    <string name="textview">Logout</string>
+</resources>

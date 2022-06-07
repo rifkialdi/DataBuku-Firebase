@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "615715028799",
+    "firebase_url": "https://databuku-49a78-default-rtdb.firebaseio.com",
+    "project_id": "databuku-49a78",
+    "storage_bucket": "databuku-49a78.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615715028799:android:428f2d497fb74a70e09d8a",
+        "android_client_info": {
+          "package_name": "com.example.databuku_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615715028799-uis7l8795iv37mc71f5472olf94ipobh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFuXPcfSCbArTXI5CtmXh6ZBsZDfMJtDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615715028799-uis7l8795iv37mc71f5472olf94ipobh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
