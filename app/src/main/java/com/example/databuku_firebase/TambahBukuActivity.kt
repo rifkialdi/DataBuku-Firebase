@@ -48,6 +48,7 @@ class TambahBukuActivity : AppCompatActivity() {
         supportActionBar?.title = "Menambah Buku"
         /* Inisialisasi objek */
         dbRealtime = Firebase.database.reference
+        binding.progressbar.visibility = View.INVISIBLE
 
         binding.idbtnTambah.setOnClickListener {
             checkField()
@@ -86,6 +87,7 @@ class TambahBukuActivity : AppCompatActivity() {
 
     /* Untuk upload foto ke firebase storage dan di dalamnya terdapat fungsi untuk menyimpan ke realtime firebase */
     private fun uploadImage(judul: String, penerbit: String, tahunTerbit: String, penulis: String, imageUri: Uri) {
+        binding.progressbar.visibility = View.VISIBLE
         val UUID = UUID.randomUUID().toString()
         val image = sRef.child("uploads/images/$UUID.jpg")
         uploadTask = image.putFile(imageUri)
@@ -107,6 +109,7 @@ class TambahBukuActivity : AppCompatActivity() {
                 saveDbRealtime(judul, penerbit, tahunTerbit, penulis, downloadUri)
                 binding.idivImage.visibility = View.INVISIBLE
                 binding.idbtnUpload.visibility = View.VISIBLE
+                binding.progressbar.visibility = View.INVISIBLE
             } else {
                 Toast.makeText(this, "Image gagal di upload", Toast.LENGTH_SHORT).show()
             }

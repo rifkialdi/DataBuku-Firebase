@@ -3,6 +3,7 @@ package com.example.databuku_firebase
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.databuku_firebase.databinding.ActivityHomeBinding
 import com.example.databuku_firebase.model.DataBukuModel
@@ -57,6 +58,7 @@ class HomeActivity : AppCompatActivity() {
                         data.add(user!!)
                     }
                     binding.idrvDatabuku.adapter = HomeAdapter(data)
+                    binding.progressBar.visibility = View.GONE
                 }
             }
             override fun onCancelled(error: DatabaseError) {
