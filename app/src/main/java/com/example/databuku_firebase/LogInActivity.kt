@@ -10,8 +10,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class LogInActivity : AppCompatActivity() {
-
+    /* View binding */
     private lateinit var binding: ActivityLogInBinding
+
+    /* buat objek untuk instance Firebase Authentication */
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +22,7 @@ class LogInActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.title = "Please Login Your Account"
 
+        /* inisialisasi objek */
         auth = Firebase.auth
 
         binding.idtvTextintent.setOnClickListener {
@@ -47,6 +50,7 @@ class LogInActivity : AppCompatActivity() {
         }
     }
 
+    /* Mengecek inputan user untuk di cek di authentication firebase */
     private fun loginUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
@@ -61,6 +65,8 @@ class LogInActivity : AppCompatActivity() {
         }
     }
 
+    /* Mengecek apakah sudah login?
+    *  Jika sudah akan langsung masuk ke home tanpa login lagi*/
     override fun onStart() {
         super.onStart()
         if (auth.currentUser != null) {

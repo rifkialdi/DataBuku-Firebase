@@ -3,6 +3,8 @@ package com.example.databuku_firebase
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
+import android.view.View
 import android.widget.Toast
 import com.example.databuku_firebase.databinding.ActivitySignUpBinding
 import com.example.databuku_firebase.model.UserModel
@@ -17,7 +19,7 @@ class SignUpActivity : AppCompatActivity() {
     /* View Binding */
     private lateinit var binding: ActivitySignUpBinding
 
-    /* Realtime & Authentication */
+    /* Buat objek untuk instance Firebase Authentication & Firebase Realtime */
     private lateinit var dbRealtime: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
@@ -27,7 +29,7 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.title = "Let's Register"
 
-        /* Inisialisasi Db Realtime & Authentication */
+        /* Inisialisasi objek */
         dbRealtime = Firebase.database.reference
         auth = Firebase.auth
 
@@ -35,7 +37,7 @@ class SignUpActivity : AppCompatActivity() {
             val name = binding.idedtName.text.toString()
             val email = binding.idedtEmail.text.toString()
             val password = binding.idedtPassword.text.toString()
-
+            val password2 = binding.idedtPassword2.text.toString()
             var check = false
             if (name.isEmpty()) {
                 check = true
@@ -52,12 +54,24 @@ class SignUpActivity : AppCompatActivity() {
                 binding.idedtPassword.error = "Fill in password"
                 binding.idedtPassword.requestFocus()
             }
+            if (password2.isEmpty()) {
+                check = true
+                binding.idedtPassword2.error = "Fill in password"
+                binding.idedtPassword2.requestFocus()
+            }
+            if (password.isNotEmpty() && password2.isNotEmpty()) {
+                if (password.toLowerCase() != password2.toLowerCase()) {
+                    Toast.makeText(this, "password anda tidak sama", Toast.LENGTH_SHORT).show()
+                    check = true
+                }
+            }
             if (!check) {
                 newAuth(email, name, password)
             }
         }
     }
 
+    /* Untuk menyimpan data inputan user ke realtime database */
     fun newAcc(name: String, email: String, password: String) {
         val userUid = auth.uid
         val user = UserModel(name, email, password, userUid)
@@ -65,12 +79,12 @@ class SignUpActivity : AppCompatActivity() {
         dbRealtime.child("Users").child(uuid).setValue(user)
     }
 
+    /* Untuk menyimpan data inputan user ke authentication firebase dan beri nilai function newAuth() */
     fun newAuth(email: String, name: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 newAcc(name, email, password)
                 Toast.makeText(this, "successfully registered", Toast.LENGTH_SHORT).show()
-
                 Intent(this, LogInActivity::class.java).also {
                     it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(it)

@@ -14,7 +14,8 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Tambah Buku"
-        android:textSize="16sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -53,7 +54,7 @@
         android:backgroundTint="@color/blue_400"
         android:ems="10"
         android:hint="Tahun Terbit"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idedt_penerbit" />
